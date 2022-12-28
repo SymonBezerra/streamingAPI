@@ -11,9 +11,9 @@ import ifpb.edu.br.streaming.domain.Movie;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     
-    public Movie getByName (String name);
+    public Movie findByName (String name);
 
-    public List<Movie> getByCategory (String category);
+    public List<Movie> findByCategory (String category);
 
     @Query("SELECT m FROM Movie m JOIN m.tags t WHERE t = LOWER(:tag)")
     public List<Movie> searchByTag (String tag);
