@@ -20,7 +20,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie createMovie(Movie movie) throws ExistingContentException {
-        if (movieRepository.). {
+        if (movieRepository.findByName(movie.getName()).isPresent()). {
             throw new ExistingContentException ("Já existe um filme cadastrado com este nome");
         }
         
