@@ -63,8 +63,15 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie updateMovie(Long id, Movie movie) throws ContentNotFoundException, ExistingContentException {
-        // TODO Auto-generated method stub
-        return null;
+        if (!movieRepository.findById(id).isPresent()) {
+            throw new ContentNotFoundException("Não há nenhum filme com este ID na nossa plataforma!");   
+        }
+        if (movieRepository.findByName(movie.getName()).isPresent()) {
+            throw new ExistingContentException("Já existe um filme com este dados na nossa plataforma!");
+        }
+
+        movie.setId(id);
+        return movieRepository.save(movie);
     }
 
     @Override
@@ -75,8 +82,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void deleteMovie(Long id) throws ContentNotFoundException {
-        // TODO Auto-generated method stub
+        if (!movieRepository.findById(id).isPresent()) {
+            throw new ContentNotFoundException("Não há nenhum filme com este ID na nossa plataforma!");   
+        } 
         
+        Movie movieToDelete = movieRepository.findById(id).get();
+        movieRepository.delete(movieToDelete);
     }
     
 }
