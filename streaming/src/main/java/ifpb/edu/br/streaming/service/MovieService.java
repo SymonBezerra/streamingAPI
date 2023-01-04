@@ -21,7 +21,7 @@ public interface MovieService {
     
     public List<Movie> findByCategory (String category) throws ContentNotFoundException;
     
-    public Movie searchByTag (String tag) throws ContentNotFoundException;
+    public List<Movie> findByTags (List<String> tag) throws ContentNotFoundException;
 
     // UPDATE 
 
