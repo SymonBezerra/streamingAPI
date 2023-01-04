@@ -20,7 +20,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie createMovie(Movie movie) throws ExistingContentException {
-        if (movieRepository.findByName(movie.getName()).isPresent()). {
+        if (movieRepository.findByName(movie.getName()).isPresent()) {
             throw new ExistingContentException ("Já existe um filme cadastrado com este nome");
         }
         
@@ -29,20 +29,30 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie findById(Long id) throws ContentNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        if (!movieRepository.findById(id).isPresent()) {
+            throw new ContentNotFoundException("Não existe um filme com este ID na plataforma!");
+        }
+
+        return movieRepository.findById(id).get();
     }
 
     @Override
     public Movie findByName(String name) throws ContentNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        if (!movieRepository.findByName(name).isPresent()) {
+            throw new ContentNotFoundException("Não existe um filme com este nome na plataforma!");
+        }
+
+        return movieRepository.findByName(name).get();
     }
 
     @Override
     public List<Movie> findByCategory(String category) throws ContentNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        List<Movie> movies = movieRepository.findByCategory(category).get();
+        if (movies.isEmpty()) {
+            throw new ContentNotFoundException ("Não há nenhum filme desta categoria na plataforma!");
+        }
+
+        return movies;
     }
 
     @Override
