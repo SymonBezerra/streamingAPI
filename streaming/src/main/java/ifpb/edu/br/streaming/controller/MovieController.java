@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,7 @@ import ifpb.edu.br.streaming.domain.Movie;
 import ifpb.edu.br.streaming.dto.ErrorDTO;
 import ifpb.edu.br.streaming.dto.MovieDTO;
 import ifpb.edu.br.streaming.exceptions.ContentNotFoundException;
+import ifpb.edu.br.streaming.exceptions.ExistingContentException;
 import ifpb.edu.br.streaming.mapper.MovieMapper;
 import ifpb.edu.br.streaming.service.impl.MovieServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -62,6 +65,15 @@ public class MovieController {
         }
     }
 
+    @PostMapping
+    public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
+        
+        try{
+            movieService.createMovie(movieMapper.convertFromDTO(movieDTO));
+            return ResponseEntity.ok(movieDTO);
+        } catch (ExistingContentException ex) {
+            return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
+        }
+    }
     
-
 }
