@@ -65,6 +65,22 @@ public class MovieController {
         }
     }
 
+    @GetMapping("/category")
+    public ResponseEntity <?> listByCategory (@RequestParam String category) {
+        
+        try {
+            List<Movie> movieList = movieService.findByCategory(category);
+            List<MovieDTO> movieDTOList = new ArrayList<>();
+
+            for (Movie movie : movieList) {
+                movieDTOList.add(movieMapper.convertToDTO(movie));
+            }
+            return ResponseEntity.ok(movieDTOList);
+        } catch (ContentNotFoundException ex) {
+            return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
+        } 
+    }
+
     @PostMapping
     public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
         
@@ -75,5 +91,5 @@ public class MovieController {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
-    
+
 }
