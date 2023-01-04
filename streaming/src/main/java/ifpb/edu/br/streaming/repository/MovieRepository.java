@@ -14,7 +14,4 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     public Movie findByName (String name);
 
     public List<Movie> findByCategory (String category);
-
-    @Query("SELECT m FROM Movie m JOIN m.tags t WHERE t = LOWER(:tag)")
-    public List<Movie> searchByTag (String tag);
 }
