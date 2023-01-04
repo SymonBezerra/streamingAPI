@@ -27,6 +27,12 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.save(movie);
     }
 
+    public List<Movie> listAllMovies () {
+
+        return movieRepository.findAll();
+        
+    }
+
     @Override
     public Movie findById(Long id) throws ContentNotFoundException {
         if (!movieRepository.findById(id).isPresent()) {
