@@ -83,7 +83,7 @@ public class MovieController {
         } 
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
         
         try{
