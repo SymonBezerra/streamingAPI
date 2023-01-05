@@ -1,5 +1,7 @@
 package ifpb.edu.br.streaming.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import ifpb.edu.br.streaming.domain.Series;
@@ -14,7 +16,7 @@ public interface SeriesService {
 
     // READ
 
-    public <List>Series listAllSeries ();
+    public List<Series> listAllSeries ();
 
     public Series findById (Long id) throws ContentNotFoundException;
 
