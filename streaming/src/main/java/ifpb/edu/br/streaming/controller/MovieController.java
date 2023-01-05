@@ -108,7 +108,7 @@ public class MovieController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity <?> updateMovie (@PathVariable Long id,@RequestBody MovieDTO movieDTO) {
         try {
             movieService.updateMovie(id, movieMapper.convertFromDTO(movieDTO));
