@@ -17,6 +17,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     public Optional<List<Movie>> findByCategory (String category);
 
-    // @Query("SELECT * FROM MOVIES JOIN MOVIE_TAGS ON MOVIES.ID = MOVIE_TAGS.MOVIE_ID WHERE MOVIE_TAGS.TAGS IN :tags;")
-    // public Optional<List<Movie>> findByTags (@Param("tags") List<String> tags);
+    @Query("SELECT * FROM movies m JOIN movie_tags mt ON m.id = mt.movie_id WHERE mt.tags IN (:tags);")
+    public Optional<List<Movie>> findByTags (@Param("tags") List<String> tags);
 }
