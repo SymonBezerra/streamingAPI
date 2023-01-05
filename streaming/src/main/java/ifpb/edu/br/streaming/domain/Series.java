@@ -21,11 +21,11 @@ public class Series {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    private Long id;
 
-    public String name;
-    public String category;
+    private String name;
+    private String category;
     
     @ElementCollection
-    public List<String> tags;
+    private List<String> tags;
 }
