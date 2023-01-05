@@ -63,17 +63,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> findByTags(List<String> tags) throws ContentNotFoundException {
-        // List<Movie> movieList = new ArrayList<>();
-        // for (String tag: tags) {
-        //     List<Movie> taggedMovies = movieRepository.findByTags(tag).get();
-        //     movieList.addAll(taggedMovies);
-        // }
-
-        // if (movieList.isEmpty()) {
-        //     throw new ContentNotFoundException("Não conseguimos encontrar nenhum filme na plataforma com estas características!");
-        // }
-
-        // return movieList;
         return null;
     }
 

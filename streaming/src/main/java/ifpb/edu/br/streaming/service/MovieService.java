@@ -15,6 +15,9 @@ public interface MovieService {
     public Movie createMovie (Movie movie) throws ExistingContentException;
 
     // READ
+
+    public List<Movie> listAllMovies ();
+
     public Movie findById (Long id) throws ContentNotFoundException;
 
     public Movie findByName (String name) throws ContentNotFoundException;
