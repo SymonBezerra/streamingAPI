@@ -83,19 +83,21 @@ public class MovieController {
         } 
     }
 
-    // @GetMapping ("/search")
-    // public ResponseEntity<?> findByTags (@RequestBody List<String> tags) {
-    //     try {
-    //         List<Movie> movieList = movieService.findByTags(tags);
-    //         List<MovieDTO> movieDTOList = new ArrayList<>();
-    //         for (Movie movie : movieList) {
-    //             movieDTOList.add(movieMapper.convertToDTO(movie));
-    //         }
-    //         return ResponseEntity.ok(movieDTOList);
-    //     } catch (ContentNotFoundException ex) {
-    //         return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
-    //     }
-    // }
+    @GetMapping ("/search")
+    public ResponseEntity<?> findByTags (@RequestParam List<String> tags) {
+        try {
+            List<Movie> movies = movieService.findByTags(tags);
+            List<MovieDTO> moviesDTO = new ArrayList<>();
+
+            for (Movie m : movies) {
+                moviesDTO.add(movieMapper.convertToDTO(m));
+            }
+            return ResponseEntity.ok(moviesDTO);
+
+        } catch (ContentNotFoundException ex) {
+            return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
+        }
+    }
 
     @PostMapping("/create")
     public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {

@@ -63,7 +63,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> findByTags(List<String> tags) throws ContentNotFoundException {
-        return null;
+        List<Movie> movies = movieRepository.retrieveByTags(tags).get();
+
+        if (movies.isEmpty()) {
+            throw new ContentNotFoundException ("Não temos este conteúdo cadastrado na plataforma!");
+        }
+        return movies;
     }
 
     @Override
