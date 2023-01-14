@@ -15,93 +15,90 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ifpb.edu.br.streaming.domain.Movie;
+import ifpb.edu.br.streaming.domain.Series;
 import ifpb.edu.br.streaming.dto.ErrorDTO;
-import ifpb.edu.br.streaming.dto.MovieDTO;
+import ifpb.edu.br.streaming.dto.SeriesDTO;
 import ifpb.edu.br.streaming.exceptions.ContentNotFoundException;
 import ifpb.edu.br.streaming.exceptions.ExistingContentException;
-import ifpb.edu.br.streaming.mapper.MovieMapper;
-import ifpb.edu.br.streaming.service.impl.MovieServiceImpl;
+import ifpb.edu.br.streaming.mapper.SeriesMapper;
+import ifpb.edu.br.streaming.service.impl.SeriesServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/series")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MovieController {
+public class SeriesController {
     
-    private final MovieServiceImpl movieService;
+    private final SeriesServiceImpl seriesService;
 
-    private final MovieMapper movieMapper;
+    private final SeriesMapper seriesMapper;
 
     @GetMapping("/all")
-    public ResponseEntity <?> listAllMovies () {
+    public ResponseEntity<?> listAllSeries () {
+        List<Series> seriesList = seriesService.listAllSeries();
+        List<SeriesDTO> seriesDTOList = new ArrayList<>();
 
-        List<Movie> movieList = movieService.listAllMovies();
-        List<MovieDTO> movieDTOList = new ArrayList<>();
-
-        for (Movie movie : movieList) {
-            movieDTOList.add(movieMapper.convertToDTO(movie));
+        for (Series s : seriesList) {
+            seriesDTOList.add(seriesMapper.convertToDTO(s));
         }
 
-        return ResponseEntity.ok(movieDTOList);
+        return ResponseEntity.ok(seriesDTOList);   
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity <?> listById (@PathVariable Long id) {
+    public ResponseEntity<?> listById (@PathVariable Long id) {
         try {
-            Movie movie = movieService.findById(id);
-            return ResponseEntity.ok(movieMapper.convertToDTO(movie));
+            Series series = seriesService.findById(id);
+            return ResponseEntity.ok(seriesMapper.convertToDTO(series));
         } catch (ContentNotFoundException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
-
 
     @GetMapping
     public ResponseEntity<?> listByTags (@RequestParam List<String> tags) {
         try {
-            List<Movie> movies = movieService.findByTags(tags);
-            List<MovieDTO> moviesDTO = new ArrayList<>();
+            List<Series> seriesList = seriesService.findByTags(tags);
+            List<SeriesDTO> seriesDTOList = new ArrayList<>();
 
-            for (Movie m : movies) {
-                moviesDTO.add(movieMapper.convertToDTO(m));
+            for (Series s : seriesList) {
+                seriesDTOList.add(seriesMapper.convertToDTO(s));
             }
-            return ResponseEntity.ok(moviesDTO);
 
+            return ResponseEntity.ok(seriesDTOList);
         } catch (ContentNotFoundException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
-        
-        try{
-            movieService.createMovie(movieMapper.convertFromDTO(movieDTO));
-            return ResponseEntity.ok(movieDTO);
+    @PostMapping("/create")
+    public ResponseEntity<?> createSeries (@RequestBody SeriesDTO seriesDTO) {
+        try {
+            Series seriesToCreate = seriesMapper.convertFromDTO(seriesDTO);
+            seriesService.createSeries(seriesToCreate);
+            return ResponseEntity.ok(seriesDTO);
         } catch (ExistingContentException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <?> updateMovie (@PathVariable Long id,@RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<?> updateSeries (@PathVariable Long id,@RequestBody SeriesDTO seriesDTO) {
         try {
-            movieService.updateMovie(id, movieMapper.convertFromDTO(movieDTO));
-            return ResponseEntity.ok(movieDTO);
-        } catch (ExistingContentException | ContentNotFoundException ex) {
+            seriesService.updateSeries(id, seriesMapper.convertFromDTO(seriesDTO));
+            return ResponseEntity.ok(seriesDTO);
+        } catch (ContentNotFoundException | ExistingContentException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity <?> deleteMovie (@PathVariable Long id) {
+    @DeleteMapping
+    public ResponseEntity<?> deleteSeries (@PathVariable Long id) {
         try {
-            movieService.deleteMovie(id);
+            seriesService.deleteSeries(id);
             return ResponseEntity.noContent().build();
         } catch (ContentNotFoundException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
         }
     }
-
 }
