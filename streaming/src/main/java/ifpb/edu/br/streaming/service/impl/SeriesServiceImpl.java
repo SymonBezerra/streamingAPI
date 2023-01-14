@@ -60,6 +60,19 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
+    public Series updateTags(Long id, List<String> tags) throws ContentNotFoundException {
+        if (!seriesRepository.findById(id).isPresent()) {
+            throw new ContentNotFoundException ("Não há nenhuma série com este ID na nossa plataforma!");
+        }
+
+        Series seriesToPatch = seriesRepository.findById(id).get();
+        seriesToPatch.setTags(tags);
+        seriesRepository.save(seriesToPatch);
+
+        return seriesToPatch;
+    }
+
+    @Override
     public void deleteSeries(Long id) throws ContentNotFoundException {
         if (!seriesRepository.findById(id).isPresent()) {
             throw new ContentNotFoundException("Este conteúdo não está cadastrado na nossa plataforma!");

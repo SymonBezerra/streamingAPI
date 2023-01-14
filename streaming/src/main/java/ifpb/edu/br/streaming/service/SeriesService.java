@@ -26,6 +26,10 @@ public interface SeriesService {
 
     public Series updateSeries (Long id, Series series) throws ContentNotFoundException, ExistingContentException;
 
+    // PATCH
+
+    public Series updateTags (Long id, List<String> tags) throws ContentNotFoundException;
+
     // DELETE
 
     public void deleteSeries (Long id) throws ContentNotFoundException;

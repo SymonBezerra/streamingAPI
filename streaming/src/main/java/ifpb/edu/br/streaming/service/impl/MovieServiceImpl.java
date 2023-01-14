@@ -1,7 +1,6 @@
 package ifpb.edu.br.streaming.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,10 +83,20 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.save(movie);
     }
 
+
     @Override
     public Movie updateTags(Long id, List<String> tags) throws ContentNotFoundException {
-        // TODO Auto-generated method stub
-        return null;
+        
+        if (!movieRepository.findById(id).isPresent()) {
+            throw new ContentNotFoundException("Não há nenhum filme com este ID na nossa plataforma!");
+        }
+        Movie movieToPatch = movieRepository.findById(id).get();
+
+        movieToPatch.setTags(tags);
+        movieRepository.save(movieToPatch);
+
+        return movieToPatch;
+
     }
 
     @Override
