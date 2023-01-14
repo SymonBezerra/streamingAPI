@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import ifpb.edu.br.streaming.mapper.MovieDetailsMapper;
 import ifpb.edu.br.streaming.mapper.MovieMapper;
 import ifpb.edu.br.streaming.mapper.SeriesMapper;
 
@@ -23,5 +24,10 @@ public class MapperConfig {
     @Bean
     public SeriesMapper seriesMapper () {
         return new SeriesMapper();
+    }
+
+    @Bean
+    public MovieDetailsMapper movieDetailsMapper () {
+        return new MovieDetailsMapper();
     }
 }
