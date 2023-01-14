@@ -18,5 +18,5 @@ public interface SeriesRepository extends JpaRepository <Series, Long> {
     public Optional<List<Series>> findByCategory (String category);
 
     @Query("SELECT s FROM Series s JOIN s.tags t WHERE t IN (:tags)")
-    public Optional<List<Series>> retrieveByTags (@Param List<String> tags);
+    public Optional<List<Series>> retrieveByTags (@Param("tags") List<String> tags);
 }
