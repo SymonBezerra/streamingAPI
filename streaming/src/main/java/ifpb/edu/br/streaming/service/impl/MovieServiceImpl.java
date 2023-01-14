@@ -42,25 +42,6 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie findByName(String name) throws ContentNotFoundException {
-        if (!movieRepository.findByName(name).isPresent()) {
-            throw new ContentNotFoundException("Não existe um filme com este nome na plataforma!");
-        }
-
-        return movieRepository.findByName(name).get();
-    }
-
-    @Override
-    public List<Movie> findByCategory(String category) throws ContentNotFoundException {
-        List<Movie> movies = movieRepository.findByCategory(category).get();
-        if (movies.isEmpty()) {
-            throw new ContentNotFoundException ("Não há nenhum filme desta categoria na plataforma!");
-        }
-
-        return movies;
-    }
-
-    @Override
     public List<Movie> findByTags(List<String> tags) throws ContentNotFoundException {
         List<Movie> movies = movieRepository.retrieveByTags(tags).get();
 

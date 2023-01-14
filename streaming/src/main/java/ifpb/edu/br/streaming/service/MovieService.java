@@ -19,10 +19,6 @@ public interface MovieService {
     public List<Movie> listAllMovies ();
 
     public Movie findById (Long id) throws ContentNotFoundException;
-
-    public Movie findByName (String name) throws ContentNotFoundException;
-    
-    public List<Movie> findByCategory (String category) throws ContentNotFoundException;
     
     public List<Movie> findByTags (List<String> tag) throws ContentNotFoundException;
 

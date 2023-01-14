@@ -56,32 +56,6 @@ public class MovieController {
         }
     }
 
-    @GetMapping("/name")
-    public ResponseEntity <?> listByName (@RequestParam String name) {
-
-        try {
-            Movie movie = movieService.findByName(name);
-            return ResponseEntity.ok(movieMapper.convertToDTO(movie));
-        } catch (ContentNotFoundException ex) {
-            return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
-        }
-    }
-
-    @GetMapping("/category")
-    public ResponseEntity <?> listByCategory (@RequestParam String category) {
-        
-        try {
-            List<Movie> movieList = movieService.findByCategory(category);
-            List<MovieDTO> movieDTOList = new ArrayList<>();
-
-            for (Movie movie : movieList) {
-                movieDTOList.add(movieMapper.convertToDTO(movie));
-            }
-            return ResponseEntity.ok(movieDTOList);
-        } catch (ContentNotFoundException ex) {
-            return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
-        } 
-    }
 
     @GetMapping ("/search")
     public ResponseEntity<?> findByTags (@RequestParam List<String> tags) {
