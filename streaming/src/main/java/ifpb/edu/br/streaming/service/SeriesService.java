@@ -20,7 +20,7 @@ public interface SeriesService {
 
     public Series findById (Long id) throws ContentNotFoundException;
 
-    public Series findByTags (List<String> tags) throws ContentNotFoundException;
+    public List<Series> findByTags (List<String> tags) throws ContentNotFoundException;
 
     // PUT
 

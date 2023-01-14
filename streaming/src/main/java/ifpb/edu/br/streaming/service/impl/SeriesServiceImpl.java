@@ -31,6 +31,16 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
+    public List<Series> findByTags(List<String> tags) throws ContentNotFoundException {
+        List<Series> series = seriesRepository.retrieveByTags(tags).get();
+        if (series.isEmpty()) {
+            throw new ContentNotFoundException ("Não temos este conteúdo cadastrado em nossa plataforma!");
+        }
+
+        return series;
+    }
+
+    @Override
     public Series findById(Long id) throws ContentNotFoundException {
         if (seriesRepository.findById(id).isPresent()) {
             return seriesRepository.findById(id).get();
