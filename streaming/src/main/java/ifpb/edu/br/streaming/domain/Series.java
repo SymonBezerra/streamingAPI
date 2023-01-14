@@ -2,6 +2,8 @@ package ifpb.edu.br.streaming.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -32,4 +34,8 @@ public class Series {
     @ElementCollection
     private List<String> tags;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "series_id", referencedColumnName = "id")
+    @JsonManagedReference
+    private SeriesDetails details;
 }
