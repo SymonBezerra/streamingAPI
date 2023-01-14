@@ -3,6 +3,8 @@ package ifpb.edu.br.streaming.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -38,6 +40,7 @@ public class Movie {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    @JsonManagedReference
     private MovieDetails details;
 
 }

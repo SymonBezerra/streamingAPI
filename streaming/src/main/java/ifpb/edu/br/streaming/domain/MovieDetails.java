@@ -2,6 +2,8 @@ package ifpb.edu.br.streaming.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class MovieDetails {
     private String description;
 
     @OneToOne(mappedBy = "details")
+    @JsonBackReference
     private Movie movie;
 
 }
