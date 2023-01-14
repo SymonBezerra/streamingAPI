@@ -2,7 +2,6 @@ package ifpb.edu.br.streaming.dto;
 
 import java.util.List;
 
-import ifpb.edu.br.streaming.domain.SeriesDetails;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeriesDTO {
     
+    private int id;
     private String name;
     private String category;
     private List<String> tags;
-    private SeriesDetails details;
+    private SeriesDetailsDTO details;
 }

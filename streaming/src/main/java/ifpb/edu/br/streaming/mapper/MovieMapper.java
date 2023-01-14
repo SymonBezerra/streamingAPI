@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ifpb.edu.br.streaming.domain.Movie;
+import ifpb.edu.br.streaming.domain.MovieDetails;
 import ifpb.edu.br.streaming.dto.MovieDTO;
 import ifpb.edu.br.streaming.dto.MovieDetailsDTO;
 
@@ -24,7 +25,8 @@ public class MovieMapper {
 
     public Movie convertFromDTO (MovieDTO movieDTO) {
         Movie movie = modelMapper.map(movieDTO, Movie.class);
-
+        MovieDetails details = detailsMapper.convertFromDTO(movieDTO.getDetails());
+        movie.setDetails(details);
         return movie;
     }
 }
