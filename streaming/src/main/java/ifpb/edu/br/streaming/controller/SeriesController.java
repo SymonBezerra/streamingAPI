@@ -71,7 +71,7 @@ public class SeriesController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createSeries (@RequestBody SeriesDTO seriesDTO) {
         try {
             Series seriesToCreate = seriesMapper.convertFromDTO(seriesDTO);
@@ -92,7 +92,7 @@ public class SeriesController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSeries (@PathVariable Long id) {
         try {
             seriesService.deleteSeries(id);

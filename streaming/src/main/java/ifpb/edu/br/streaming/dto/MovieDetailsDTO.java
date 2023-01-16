@@ -7,13 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class MovieDTO {
+public class MovieDetailsDTO {
     
-    // private Long id;
-    private String name;
-    private String category;
-    private List<String> tags;
-    private MovieDetailsDTO details;
     private List<String> movieCast;
     private int duration;
     private String description;
