@@ -22,13 +22,11 @@ import ifpb.edu.br.streaming.exceptions.ContentNotFoundException;
 import ifpb.edu.br.streaming.exceptions.ExistingContentException;
 import ifpb.edu.br.streaming.mapper.MovieMapper;
 import ifpb.edu.br.streaming.service.impl.MovieServiceImpl;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/movies")
-// @Api(value = "Movie")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MovieController {
     
