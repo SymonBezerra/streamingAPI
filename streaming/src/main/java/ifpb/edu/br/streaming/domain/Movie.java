@@ -31,4 +31,10 @@ public class Movie {
 
     @ElementCollection
     private List<String> tags;
+
+    // details
+    @ElementCollection
+    private List<String> movieCast;
+    private int duration;
+    private String description;
 }

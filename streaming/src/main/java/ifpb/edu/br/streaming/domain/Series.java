@@ -28,4 +28,10 @@ public class Series {
     
     @ElementCollection
     private List<String> tags;
+
+    // details
+    @ElementCollection
+    private List<String> seriesCast;
+    private int seasons;
+    private String description;
 }

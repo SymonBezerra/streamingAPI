@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeriesDTO {
     
-    private int id;
+    // private Long id;
     private String name;
     private String category;
     private List<String> tags;
+    private List<String> seriesCast;
+    private int seasons;
+    private String description;
 }

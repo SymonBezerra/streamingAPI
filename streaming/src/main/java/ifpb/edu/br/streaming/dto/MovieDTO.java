@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MovieDTO {
     
-    private int id;
+    // private Long id;
     private String name;
     private String category;
     private List<String> tags;
+    private List<String> movieCast;
+    private int duration;
+    private String description;
 }
