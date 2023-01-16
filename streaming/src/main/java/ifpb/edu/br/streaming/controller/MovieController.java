@@ -22,6 +22,7 @@ import ifpb.edu.br.streaming.exceptions.ContentNotFoundException;
 import ifpb.edu.br.streaming.exceptions.ExistingContentException;
 import ifpb.edu.br.streaming.mapper.MovieMapper;
 import ifpb.edu.br.streaming.service.impl.MovieServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,6 +35,7 @@ public class MovieController {
     private final MovieMapper movieMapper;
 
     @GetMapping("/all")
+    @ApiOperation("Retorna a lista de todos os filmes cadastrados")
     public ResponseEntity <?> listAllMovies () {
 
         List<Movie> movieList = movieService.listAllMovies();
@@ -47,6 +49,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Retorna um filme a partir do seu ID")
     public ResponseEntity <?> listById (@PathVariable Long id) {
         try {
             Movie movie = movieService.findById(id);
@@ -58,6 +61,7 @@ public class MovieController {
 
 
     @GetMapping
+    @ApiOperation("Realiza uma busca na lista de filmes através de palavras-chave")
     public ResponseEntity<?> listByTags (@RequestParam List<String> tags) {
         try {
             List<Movie> movies = movieService.findByTags(tags);
@@ -74,6 +78,7 @@ public class MovieController {
     }
 
     @PostMapping
+    @ApiOperation("Cadastra um novo filme na plataforma")
     public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
         
         try{
@@ -85,6 +90,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Atualiza um filme na plataforma a partir do seu ID")
     public ResponseEntity <?> updateMovie (@PathVariable Long id,@RequestBody MovieDTO movieDTO) {
         try {
             movieService.updateMovie(id, movieMapper.convertFromDTO(movieDTO));
@@ -95,6 +101,7 @@ public class MovieController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Exclui um filme da plataforma a partir do seu ID")
     public ResponseEntity <?> deleteMovie (@PathVariable Long id) {
         try {
             movieService.deleteMovie(id);
