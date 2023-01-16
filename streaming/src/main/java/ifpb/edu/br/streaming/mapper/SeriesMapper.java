@@ -18,15 +18,15 @@ public class SeriesMapper {
 
     public SeriesDTO convertToDTO (Series series) {
         SeriesDTO seriesDTO = modelMapper.map(series, SeriesDTO.class);
-        // SeriesDetailsDTO detailsDTO = detailsMapper.convertToDTO(series.getDetails());
-        // seriesDTO.setDetails(detailsDTO);
+        SeriesDetailsDTO detailsDTO = detailsMapper.convertToDTO(series.getDetails());
+        seriesDTO.setDetails(detailsDTO);
         return seriesDTO;
     }
 
     public Series convertFromDTO (SeriesDTO seriesDTO) {
         Series series = modelMapper.map(seriesDTO, Series.class);
-        // SeriesDetails details = detailsMapper.convertFromDTO(seriesDTO.getDetails());
-        // series.setDetails(details);
+        SeriesDetails details = detailsMapper.convertFromDTO(seriesDTO.getDetails());
+        series.setDetails(details);
         return series;
     }
 
