@@ -13,7 +13,6 @@ public class MovieDTO {
     private String name;
     private String category;
     private List<String> tags;
-    private MovieDetailsDTO details;
     private List<String> movieCast;
     private int duration;
     private String description;
