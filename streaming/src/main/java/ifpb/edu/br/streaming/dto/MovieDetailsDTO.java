@@ -12,4 +12,5 @@ public class MovieDetailsDTO {
     private List<String> movieCast;
     private int duration;
     private String description;
+    private String banner;
 }

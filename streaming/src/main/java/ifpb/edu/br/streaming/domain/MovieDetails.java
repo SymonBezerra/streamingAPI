@@ -34,6 +34,8 @@ public class MovieDetails {
 
     private String description;
 
+    private String banner;
+
     @OneToOne(mappedBy = "details")
     @JsonBackReference
     private Movie movie;

@@ -12,4 +12,5 @@ public class SeriesDetailsDTO {
     private List<String> seriesCast;
     private int seasons;
     private String description;
+    private String banner;
 }

@@ -34,6 +34,8 @@ public class SeriesDetails {
 
     private String description;
 
+    private String banner;
+
     @OneToOne(mappedBy = "details")
     @JsonBackReference
     private Series series;
