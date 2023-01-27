@@ -37,7 +37,7 @@ public class SeriesDetails {
 
     private String banner;
 
-    @OneToOne(mappedBy = "details")
+    @OneToOne(mappedBy = "details", fetch = FetchType.EAGER)
     @JsonBackReference
     @JsonIgnore
     private Series series;

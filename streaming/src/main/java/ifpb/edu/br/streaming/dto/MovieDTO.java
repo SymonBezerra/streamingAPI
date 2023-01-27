@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class MovieDTO {
-    
+
     private String name;
     private String category;
     private List<String> tags;

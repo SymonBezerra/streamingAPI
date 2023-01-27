@@ -35,8 +35,8 @@ public class Series {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "series_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
     @JsonManagedReference
     private SeriesDetails details;
 }
