@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeriesDTO {
     
-    private int id;
     private String name;
     private String category;
     private List<String> tags;

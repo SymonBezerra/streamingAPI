@@ -20,6 +20,7 @@ public class MovieMapper {
         MovieDTO movieDTO = modelMapper.map(movie, MovieDTO.class);
         MovieDetailsDTO detailsDTO = detailsMapper.convertToDTO(movie.getDetails());
         movieDTO.setDetails(detailsDTO);
+        movieDTO.getDetails().setMovie(movieDTO);
         return movieDTO;
     }
 

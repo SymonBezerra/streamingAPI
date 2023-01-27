@@ -39,7 +39,7 @@ public class Movie {
     private List<String> tags;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
     @JsonManagedReference
     private MovieDetails details;
 
