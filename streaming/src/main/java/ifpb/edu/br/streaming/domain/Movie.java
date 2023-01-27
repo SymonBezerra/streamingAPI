@@ -38,7 +38,7 @@ public class Movie {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "details_id", referencedColumnName = "id")
     @JsonManagedReference
     private MovieDetails details;

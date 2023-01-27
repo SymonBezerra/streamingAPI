@@ -26,7 +26,7 @@ public class MovieDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     
     private int duration;
     
@@ -37,7 +37,7 @@ public class MovieDetails {
 
     private String banner;
 
-    @OneToOne(mappedBy = "details")
+    @OneToOne(mappedBy = "details", fetch = FetchType.EAGER)
     @JsonBackReference
     @JsonIgnore
     private Movie movie;
