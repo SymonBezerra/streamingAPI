@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MovieDTO {
 
+    // private Long id;
     private String name;
     private String category;
     private List<String> tags;
