@@ -77,7 +77,8 @@ public class MovieController {
     public ResponseEntity<?> createMovie (@RequestBody MovieDTO movieDTO) {
         
         try{
-            movieService.createMovie(movieMapper.convertFromDTO(movieDTO));
+            Movie createdMovie = movieService.createMovie(movieMapper.convertFromDTO(movieDTO));
+            movieDTO.setId(createdMovie.getId());
             return ResponseEntity.ok(movieDTO);
         } catch (ExistingContentException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
@@ -88,6 +89,7 @@ public class MovieController {
     public ResponseEntity <?> updateMovie (@PathVariable Long id,@RequestBody MovieDTO movieDTO) {
         try {
             movieService.updateMovie(id, movieMapper.convertFromDTO(movieDTO));
+            movieDTO.setId(id);
             return ResponseEntity.ok(movieDTO);
         } catch (ExistingContentException | ContentNotFoundException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));

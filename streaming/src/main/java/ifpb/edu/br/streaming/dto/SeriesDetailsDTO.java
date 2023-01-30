@@ -11,11 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SeriesDetailsDTO {
     
-    // private Long id;
+    @JsonIgnore
+    private Long id;
+    
     private List<String> seriesCast;
     private int seasons;
     private String description;
     private String banner;
+    
     @JsonIgnore
     private SeriesDTO series;
 }

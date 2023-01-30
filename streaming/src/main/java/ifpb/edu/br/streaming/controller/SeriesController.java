@@ -76,6 +76,7 @@ public class SeriesController {
         try {
             Series seriesToCreate = seriesMapper.convertFromDTO(seriesDTO);
             seriesService.createSeries(seriesToCreate);
+            seriesDTO.setId(seriesToCreate.getId());
             return ResponseEntity.ok(seriesDTO);
         } catch (ExistingContentException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));
@@ -86,6 +87,7 @@ public class SeriesController {
     public ResponseEntity<?> updateSeries (@PathVariable Long id,@RequestBody SeriesDTO seriesDTO) {
         try {
             seriesService.updateSeries(id, seriesMapper.convertFromDTO(seriesDTO));
+            seriesDTO.setId(id);
             return ResponseEntity.ok(seriesDTO);
         } catch (ContentNotFoundException | ExistingContentException ex) {
             return ResponseEntity.badRequest().body(new ErrorDTO(ex.getMessage()));

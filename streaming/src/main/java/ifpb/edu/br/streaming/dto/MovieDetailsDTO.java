@@ -11,11 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MovieDetailsDTO {
     
-    // private Long id;
+    @JsonIgnore
+    private Long id;
+    
     private List<String> movieCast;
     private int duration;
     private String description;
     private String banner;
+
     @JsonIgnore
     private MovieDTO movie;
 }
