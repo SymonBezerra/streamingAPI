@@ -15,7 +15,7 @@ public class MovieDetailsDTO {
     private Long id;
     
     private List<String> movieCast;
-    private int duration;
+    private String duration;
     private String description;
     private String banner;
 

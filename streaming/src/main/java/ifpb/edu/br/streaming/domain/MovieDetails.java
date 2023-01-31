@@ -28,7 +28,7 @@ public class MovieDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private int duration;
+    private String duration;
     
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> movieCast;
