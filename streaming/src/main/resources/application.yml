@@ -10,10 +10,14 @@ spring:
     h2:
         console:
             enabled: true
-    mvc:
-        pathmatch:
-            matching-strategy: ant_path_matcher
+    # mvc:
+    #     pathmatch:
+    #         matching-strategy: ant_path_matcher
 
 server:
   servlet:
     context-path: /streaming
+
+# springdoc:
+#     api-docs:
+#         path: /docs
